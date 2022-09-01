@@ -18,13 +18,15 @@ bool STOP01 =  true;
 
 void run01right(lv_event_t * e, lv_obj_t * obj)
 {
-	// Your code here
-
     while(STOP01) {
         smd.Run_Unlimited(SmartDrive_Motor_ID_1, SmartDrive_Dir_Reverse, 90);
       //  lv_event_code_t eb = lv_event_get_code(e);
-      //  lv_obj_t * obj1 = lv_event_get_target(e);
-        if(e == LV_EVENT_CLICKED) {
+        lv_event_code_t code = lv_event_get_code(e);
+     //  lv_obj_t * obj = lv_event_get_target(obj);
+
+  //      lv_obj_t * obj = lv_event_get_target(obj);
+
+        if(code == LV_EVENT_CLICKED) {
               if (obj == ui_stop) {
                   smd.StopMotor(SmartDrive_Motor_ID_1, SmartDrive_Action_Brake);
               }
