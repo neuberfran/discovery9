@@ -44,7 +44,7 @@
 
 #define F_CPU  180000000L /* CPU: 180MHz */
 #define LED_BUILTIN  D13 /* Default Built-in LED */
-
+#define BUTTON_BUILTIN D16
 #define RTDUINO_DEFAULT_IIC_BUS_NAME            "i2c1"
 
 #endif /* Pins_Arduino_h */

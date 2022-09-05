@@ -8,17 +8,17 @@
  * 2021-12-10     Meco Man     first version
  */
 
-#include <Arduino.h>
+// #include <Arduino.h>
 
-void setup(void)
-{
+// void setup(void)
+// {
     /* put your setup code here, to run once: */
-    pinMode(LED_BUILTIN, OUTPUT);
-}
+   // pinMode(LED_BUILTIN, OUTPUT);
+// }
 
-void loop(void)
-{
+// void loop(void)
+// {
     /* put your main code here, to run repeatedly: */
  //   digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-    delay(100);
-}
+  //  delay(100);
+// }
