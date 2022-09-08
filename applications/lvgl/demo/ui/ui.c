@@ -29,7 +29,7 @@ static void ui_event_rodarpdireita(lv_event_t * e, lv_obj_t * obj)
     lv_event_code_t event = lv_event_get_code(e);
     lv_obj_t * ta = lv_event_get_target(e);
     if(event == LV_EVENT_CLICKED) {
-        run01right(e, ta);
+        run01right(e);
     }
 }
 static void ui_event_stop(lv_event_t * e, lv_obj_t * obj)
@@ -37,7 +37,7 @@ static void ui_event_stop(lv_event_t * e, lv_obj_t * obj)
     lv_event_code_t event = lv_event_get_code(e);
     lv_obj_t * ta = lv_event_get_target(e);
     if(event == LV_EVENT_CLICKED) {
-        stop01motor(e, ta);
+        stop01motor(e);
     }
 }
 

@@ -1,9 +1,3 @@
-// SquareLine LVGL GENERATED FILE
-// EDITOR VERSION: SquareLine Studio 1.0.5
-// LVGL VERSION: 8.2
-// PROJECT: SquareLine_Project7
-
-
 #include <Arduino.h>
 #include "ui.h"
 #include "vGlobal.h"
@@ -20,54 +14,47 @@ int led_state = LOW;    // the current state of LED
 int button_state;       // the current state of button
 int last_button_state;  // the previous state of button
 
-void run01right(lv_event_t * e, lv_obj_t * obj)
+enum state_t {
+    state_1 = 0, // STOPPED_STATE;
+    state_2 = 1, // RUNNING_STATE;
+};
+
+void Timercallback(lv_timer_t * timer)
 {
-    lv_event_code_t code = lv_event_get_code(e);
- //   lv_obj_t *obj = lv_event_get_target(e);
-     while(obj != ui_stop && STOP01) {
-//   time_now = millis();
+  /*Use the user_data*/
+  uint32_t * user_data = timer->user_data;
+  printf("my_timer called with user data: %d\n", *user_data);
 
- //      while(millis() < time_now + period && STOP01) {
-
-        lv_event_code_t code = lv_event_get_code(e);
-//        lv_obj_add_event_cb(ui_stop, ui_event_stop, LV_EVENT_ALL, NULL);
-        smd.Run_Unlimited(SmartDrive_Motor_ID_1, SmartDrive_Dir_Reverse, 90);
-//        delay(1000);
-//        lv_obj_add_event_cb(obj, btn2_event_cb, LV_EVENT_ALL, NULL);           /*Assign a callback to the button*/
-      //  lv_event_code_t eb = lv_event_get_code(e);
-   //     lv_event_code_t code = lv_event_get_code(e);
-     //  lv_obj_t * obj = lv_event_get_target(obj);
-
-  //      lv_obj_t * obj = lv_event_get_target(obj);
-
-//        if(code == LV_EVENT_CLICKED) {
-//              if (obj == ui_stop) {
-//                  smd.StopMotor(SmartDrive_Motor_ID_1, SmartDrive_Action_Brake);
-//              }
-//        }
-    }
-       STOP01 = false;
-
+  /*Do something with LVGL*/
+  if (state == 1) {
+      printf("my_timer called with user data parte 2: %d\n", *user_data);
+      run01right(e);
+  }
 }
 
-void stop01motor(lv_event_t * e, lv_obj_t * obj)
+void run01right(lv_event_t * e)
+{
+    // Your code here
+   smd.Run_Unlimited(SmartDrive_Motor_ID_1, SmartDrive_Dir_Reverse, 90);
+   state = state_2;
+}
+
+void stop01motor(lv_event_t * e)
 {
 	// Your code here
-    STOP01 = false;
     smd.StopMotor(SmartDrive_Motor_ID_1, SmartDrive_Action_Brake);
-    STOP01 = false;
+    state = state_1;
 }
+
 void setup(void)
 {
     Serial.begin(115200);                // initialize serial
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(BUTTON_BUILTIN, INPUT);
+}
 
-    }
 void loop(void)
 {
-//    digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-//    delay(1000);
     last_button_state = button_state;      // save the last state
     button_state = digitalRead(BUTTON_BUILTIN); // read new state
 
@@ -80,6 +67,7 @@ void loop(void)
       // control LED arccoding to the toggled state
       digitalWrite(LED_BUILTIN, led_state);
       smd.StopMotor(SmartDrive_Motor_ID_1, SmartDrive_Action_Brake);
-
     }
 }
+static uint32_t user_data = 10;
+lv_timer_t * timer = lv_timer_create(Timercallback, 500,  &user_data);

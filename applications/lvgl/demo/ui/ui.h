@@ -22,8 +22,8 @@ extern lv_obj_t * ui_Label1;
 extern lv_obj_t * ui_stop;
 extern lv_obj_t * ui_Label2;
 
-void run01right(lv_event_t * e, lv_obj_t * obj);
-void stop01motor(lv_event_t * e, lv_obj_t * obj);
+void run01right(lv_event_t * e);
+void stop01motor(lv_event_t * e);
 
 
 
