@@ -1,2 +1,2 @@
 //vGlobal.h
-extern bool STOP01; 
+extern bool STOP03;

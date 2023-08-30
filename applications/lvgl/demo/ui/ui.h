@@ -18,12 +18,15 @@ extern "C" {
 
 extern lv_obj_t * ui_Screen1;
 extern lv_obj_t * ui_rodarpdireita;
-extern lv_obj_t * ui_Label1;
+extern lv_obj_t * ui_run01toright;
 extern lv_obj_t * ui_stop;
-extern lv_obj_t * ui_Label2;
+extern lv_obj_t * ui_stop01;
+extern lv_obj_t * ui_rodarpesquerda;
+extern lv_obj_t * ui_run01toleft;
 
 void run01right(lv_event_t * e);
 void stop01motor(lv_event_t * e);
+void run01left(lv_event_t * e);
 
 
 
